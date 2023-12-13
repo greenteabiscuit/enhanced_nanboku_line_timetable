@@ -50,12 +50,12 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
                         .foregroundColor(.gray)
                 }
                 
-                VStack(spacing: 30) { // Circles with background to hide the line
+                VStack(spacing: 45) { // Circles with background to hide the line
                     ForEach(0..<4, id: \.self) { _ in
                         Circle()
                             .strokeBorder(Color.black, lineWidth: 1)
                             .background(Circle().fill(Color.white)) // Background circle to mask the line
-                            .frame(width: 30, height: 30)
+                            .frame(width: 15, height: 15)
                     }
                 }
             }
@@ -63,7 +63,7 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             .padding(.bottom, 50)
 
             // Texts next to the circles
-            VStack(alignment: .leading, spacing: 40) {
+            VStack(alignment: .leading, spacing: 41) {
                 Text("六本木一丁目")
                 Text("永田町")
                 Text("飯田橋")
@@ -72,7 +72,7 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             .font(.system(size: 16))
             
             // Number columns
-            VStack(alignment: .leading, spacing: 40) {
+            VStack(alignment: .leading, spacing: 41) {
                 Text("19:41")
                 Text("19:45")
                 Text("19:52")
@@ -81,7 +81,7 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             .font(.system(size: 16))
         
             
-            VStack(alignment: .leading, spacing: 40) {
+            VStack(alignment: .leading, spacing: 41) {
                 Text("20:03")
                 Text("20:07")
                 Text("20:13")
