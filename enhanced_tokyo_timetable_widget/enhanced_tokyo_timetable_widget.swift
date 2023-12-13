@@ -82,10 +82,10 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
         
             
             VStack(alignment: .leading, spacing: 41) {
-                Text("20:03")
-                Text("20:07")
-                Text("20:13")
-                Text("20:19")
+                Text("21:00")
+                Text("21:04")
+                Text("21:11")
+                Text("21:16")
             }
             .font(.system(size: 16))
         }
