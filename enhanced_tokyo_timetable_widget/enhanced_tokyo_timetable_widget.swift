@@ -76,7 +76,7 @@ extension ConfigurationAppIntent {
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemLarge) {
     enhanced_tokyo_timetable_widget()
 } timeline: {
     SimpleEntry(date: .now, configuration: .smiley)
