@@ -41,13 +41,41 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+        HStack(alignment: .center, spacing: 20) {
+            // Line and circles
+            ZStack {
+                VStack { // Vertical line
+                    Rectangle()
+                        .frame(width: 2)
+                        .foregroundColor(.gray)
+                }
+                
+                VStack(spacing: 30) { // Circles with background to hide the line
+                    ForEach(0..<4, id: \.self) { _ in
+                        Circle()
+                            .strokeBorder(Color.black, lineWidth: 1)
+                            .background(Circle().fill(Color.white)) // Background circle to mask the line
+                            .frame(width: 30, height: 30)
+                    }
+                }
+            }
+            .padding(.top, 50)
+            .padding(.bottom, 50)
 
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+            // Texts next to the circles
+            VStack(spacing: 40) {
+                ForEach(0..<4, id: \.self) { _ in
+                    HStack(spacing: 60) { // Horizontal spacing between texts
+                        Text("hello")
+                        Text("123")
+                        Text("256")
+                    }
+                }
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .padding()
+        .background(Color.white) // Set the background color of the entire view to match the circle background
     }
 }
 
