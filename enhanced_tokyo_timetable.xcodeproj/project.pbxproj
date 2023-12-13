@@ -14,6 +14,14 @@
 		59F6312C2B29F48D009088E4 /* enhanced_tokyo_timetableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F6312B2B29F48D009088E4 /* enhanced_tokyo_timetableTests.swift */; };
 		59F631362B29F48D009088E4 /* enhanced_tokyo_timetableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F631352B29F48D009088E4 /* enhanced_tokyo_timetableUITests.swift */; };
 		59F631382B29F48D009088E4 /* enhanced_tokyo_timetableUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F631372B29F48D009088E4 /* enhanced_tokyo_timetableUITestsLaunchTests.swift */; };
+		59F6314B2B29F500009088E4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F6314A2B29F500009088E4 /* WidgetKit.framework */; };
+		59F6314D2B29F500009088E4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F6314C2B29F500009088E4 /* SwiftUI.framework */; };
+		59F631502B29F500009088E4 /* enhanced_tokyo_timetable_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F6314F2B29F500009088E4 /* enhanced_tokyo_timetable_widgetBundle.swift */; };
+		59F631522B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F631512B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift */; };
+		59F631542B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F631532B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift */; };
+		59F631562B29F500009088E4 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F631552B29F500009088E4 /* AppIntent.swift */; };
+		59F631582B29F502009088E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59F631572B29F502009088E4 /* Assets.xcassets */; };
+		59F6315C2B29F502009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 59F631482B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +39,28 @@
 			remoteGlobalIDString = 59F631162B29F488009088E4;
 			remoteInfo = enhanced_tokyo_timetable;
 		};
+		59F6315A2B29F502009088E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59F6310F2B29F488009088E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59F631472B29F500009088E4;
+			remoteInfo = enhanced_tokyo_timetable_widgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		59F631602B29F502009088E4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				59F6315C2B29F502009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		59F631172B29F488009088E4 /* enhanced_tokyo_timetable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = enhanced_tokyo_timetable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +73,15 @@
 		59F631312B29F48D009088E4 /* enhanced_tokyo_timetableUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = enhanced_tokyo_timetableUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59F631352B29F48D009088E4 /* enhanced_tokyo_timetableUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetableUITests.swift; sourceTree = "<group>"; };
 		59F631372B29F48D009088E4 /* enhanced_tokyo_timetableUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetableUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		59F631482B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = enhanced_tokyo_timetable_widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		59F6314A2B29F500009088E4 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		59F6314C2B29F500009088E4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		59F6314F2B29F500009088E4 /* enhanced_tokyo_timetable_widgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetable_widgetBundle.swift; sourceTree = "<group>"; };
+		59F631512B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetable_widgetLiveActivity.swift; sourceTree = "<group>"; };
+		59F631532B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetable_widget.swift; sourceTree = "<group>"; };
+		59F631552B29F500009088E4 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		59F631572B29F502009088E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59F631592B29F502009088E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +106,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59F631452B29F500009088E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59F6314D2B29F500009088E4 /* SwiftUI.framework in Frameworks */,
+				59F6314B2B29F500009088E4 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +124,8 @@
 				59F631192B29F488009088E4 /* enhanced_tokyo_timetable */,
 				59F6312A2B29F48D009088E4 /* enhanced_tokyo_timetableTests */,
 				59F631342B29F48D009088E4 /* enhanced_tokyo_timetableUITests */,
+				59F6314E2B29F500009088E4 /* enhanced_tokyo_timetable_widget */,
+				59F631492B29F500009088E4 /* Frameworks */,
 				59F631182B29F488009088E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +136,7 @@
 				59F631172B29F488009088E4 /* enhanced_tokyo_timetable.app */,
 				59F631272B29F48D009088E4 /* enhanced_tokyo_timetableTests.xctest */,
 				59F631312B29F48D009088E4 /* enhanced_tokyo_timetableUITests.xctest */,
+				59F631482B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +177,28 @@
 			path = enhanced_tokyo_timetableUITests;
 			sourceTree = "<group>";
 		};
+		59F631492B29F500009088E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59F6314A2B29F500009088E4 /* WidgetKit.framework */,
+				59F6314C2B29F500009088E4 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59F6314E2B29F500009088E4 /* enhanced_tokyo_timetable_widget */ = {
+			isa = PBXGroup;
+			children = (
+				59F6314F2B29F500009088E4 /* enhanced_tokyo_timetable_widgetBundle.swift */,
+				59F631512B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift */,
+				59F631532B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift */,
+				59F631552B29F500009088E4 /* AppIntent.swift */,
+				59F631572B29F502009088E4 /* Assets.xcassets */,
+				59F631592B29F502009088E4 /* Info.plist */,
+			);
+			path = enhanced_tokyo_timetable_widget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,10 +209,12 @@
 				59F631132B29F488009088E4 /* Sources */,
 				59F631142B29F488009088E4 /* Frameworks */,
 				59F631152B29F488009088E4 /* Resources */,
+				59F631602B29F502009088E4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				59F6315B2B29F502009088E4 /* PBXTargetDependency */,
 			);
 			name = enhanced_tokyo_timetable;
 			productName = enhanced_tokyo_timetable;
@@ -183,6 +257,23 @@
 			productReference = 59F631312B29F48D009088E4 /* enhanced_tokyo_timetableUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		59F631472B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59F6315D2B29F502009088E4 /* Build configuration list for PBXNativeTarget "enhanced_tokyo_timetable_widgetExtension" */;
+			buildPhases = (
+				59F631442B29F500009088E4 /* Sources */,
+				59F631452B29F500009088E4 /* Frameworks */,
+				59F631462B29F500009088E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = enhanced_tokyo_timetable_widgetExtension;
+			productName = enhanced_tokyo_timetable_widgetExtension;
+			productReference = 59F631482B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,6 +295,9 @@
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = 59F631162B29F488009088E4;
 					};
+					59F631472B29F500009088E4 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 				};
 			};
 			buildConfigurationList = 59F631122B29F488009088E4 /* Build configuration list for PBXProject "enhanced_tokyo_timetable" */;
@@ -222,6 +316,7 @@
 				59F631162B29F488009088E4 /* enhanced_tokyo_timetable */,
 				59F631262B29F48D009088E4 /* enhanced_tokyo_timetableTests */,
 				59F631302B29F48D009088E4 /* enhanced_tokyo_timetableUITests */,
+				59F631472B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +342,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59F631462B29F500009088E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59F631582B29F502009088E4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +382,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		59F631442B29F500009088E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59F631502B29F500009088E4 /* enhanced_tokyo_timetable_widgetBundle.swift in Sources */,
+				59F631562B29F500009088E4 /* AppIntent.swift in Sources */,
+				59F631542B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift in Sources */,
+				59F631522B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -291,6 +405,11 @@
 			isa = PBXTargetDependency;
 			target = 59F631162B29F488009088E4 /* enhanced_tokyo_timetable */;
 			targetProxy = 59F631322B29F48D009088E4 /* PBXContainerItemProxy */;
+		};
+		59F6315B2B29F502009088E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59F631472B29F500009088E4 /* enhanced_tokyo_timetable_widgetExtension */;
+			targetProxy = 59F6315A2B29F502009088E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -417,6 +536,7 @@
 		59F6313C2B29F48D009088E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,6 +565,7 @@
 		59F6313D2B29F48D009088E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -542,6 +663,58 @@
 			};
 			name = Release;
 		};
+		59F6315E2B29F502009088E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = enhanced_tokyo_timetable_widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = enhanced_tokyo_timetable_widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.enhanced-tokyo-timetable.enhanced-tokyo-timetable-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		59F6315F2B29F502009088E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = enhanced_tokyo_timetable_widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = enhanced_tokyo_timetable_widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.enhanced-tokyo-timetable.enhanced-tokyo-timetable-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -577,6 +750,15 @@
 			buildConfigurations = (
 				59F631422B29F48D009088E4 /* Debug */,
 				59F631432B29F48D009088E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59F6315D2B29F502009088E4 /* Build configuration list for PBXNativeTarget "enhanced_tokyo_timetable_widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F6315E2B29F502009088E4 /* Debug */,
+				59F6315F2B29F502009088E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
