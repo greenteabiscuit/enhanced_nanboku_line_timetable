@@ -63,19 +63,34 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             .padding(.bottom, 50)
 
             // Texts next to the circles
-            VStack(spacing: 40) {
-                ForEach(0..<4, id: \.self) { _ in
-                    HStack(spacing: 60) { // Horizontal spacing between texts
-                        Text("hello")
-                        Text("123")
-                        Text("256")
-                    }
-                }
+            VStack(alignment: .leading, spacing: 40) {
+                Text("六本木一丁目")
+                Text("永田町")
+                Text("飯田橋")
+                Text("東大前")
             }
+            .font(.system(size: 16))
+            
+            // Number columns
+            VStack(alignment: .leading, spacing: 40) {
+                Text("19:41")
+                Text("19:45")
+                Text("19:52")
+                Text("19:57")
+            }
+            .font(.system(size: 16))
+        
+            
+            VStack(alignment: .leading, spacing: 40) {
+                Text("20:03")
+                Text("20:07")
+                Text("20:13")
+                Text("20:19")
+            }
+            .font(.system(size: 16))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
-        .background(Color.white) // Set the background color of the entire view to match the circle background
     }
 }
 
