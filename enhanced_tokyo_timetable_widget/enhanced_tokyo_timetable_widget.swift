@@ -9,6 +9,26 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
+    // Define the class with two Int fields: hour and min
+    class TimePoint {
+        var hour: Int
+        var min: Int
+        var date: Date
+        var dest: String
+        
+        init(hour: Int, min: Int, dest: String) {
+            let today = Calendar.current.startOfDay(for: Date())
+            self.hour = hour
+            self.min = min
+            self.date = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: today)!
+            self.dest = dest
+        }
+    }
+    
+    static var weekdaySchedule: [[TimePoint]] = [
+        [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
+        [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
+    ]
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
     }
