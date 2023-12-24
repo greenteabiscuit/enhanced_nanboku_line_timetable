@@ -8,7 +8,22 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: AppIntentTimelineProvider {
+struct Provider: TimelineProvider {
+    func placeholder(in context: Context) -> Entry {
+        .placeholder
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
+        completion(.placeholder)
+    }
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        let currentDate = Date()
+        let seconds = Calendar.current.component(.second, from: currentDate)
+        let startDate = Calendar.current.date(byAdding: .second, value: -seconds, to: currentDate)!
+        completion(.init(entries: [], policy: .atEnd))
+    }
+    
     // Define the class with two Int fields: hour and min
     class TimePoint {
         var hour: Int
@@ -29,34 +44,17 @@ struct Provider: AppIntentTimelineProvider {
         [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
         [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
     ]
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
-    }
-
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
-    }
-    
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-
-        return Timeline(entries: entries, policy: .atEnd)
-    }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationAppIntent
-}
+struct Entry: TimelineEntry {
+    var date: Date = .now
+    var closestDate: Date? = .now
+    var secondClosestDate: Date? = .now
 
+    static var placeholder: Self {
+        .init()
+    }
+}
 struct enhanced_tokyo_timetable_widgetEntryView : View {
     var entry: Provider.Entry
 
@@ -118,9 +116,8 @@ struct enhanced_tokyo_timetable_widget: Widget {
     let kind: String = "enhanced_tokyo_timetable_widget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            enhanced_tokyo_timetable_widgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+        StaticConfiguration(kind: kind, provider: Provider()) {
+            enhanced_tokyo_timetable_widgetEntryView(entry: $0)
         }
     }
 }
@@ -142,6 +139,5 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemLarge) {
     enhanced_tokyo_timetable_widget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    Entry.placeholder
 }
