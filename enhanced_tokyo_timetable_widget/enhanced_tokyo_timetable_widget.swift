@@ -48,6 +48,7 @@ struct Provider: TimelineProvider {
     }
     
     static var weekdaySchedule: [[TimePoint]] = [
+        [TimePoint(hour: 16, min: 19, dest: "六本木一丁目"), TimePoint(hour: 16, min: 23, dest: "永田町"), TimePoint(hour: 16, min: 29, dest: "飯田橋"), TimePoint(hour: 16, min: 34, dest: "東大前")],
         [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
         [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
     ]
@@ -120,16 +121,20 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             
             // Number columns
             VStack(alignment: .leading, spacing: 41) {
-                ForEach(0..<4, id: \.self) {
-                    num in Text("\(entry.closestDate[num].date, formatter: Self.dateFormatter)")
+                ForEach(0..<4, id: \.self) { num in
+                    if let date = entry.closestDate.indices.contains(num) ? entry.closestDate[num].date : nil {
+                        Text(date, formatter: Self.dateFormatter)
+                    }
                 }
             }
             .font(.system(size: 16))
         
             
             VStack(alignment: .leading, spacing: 41) {
-                ForEach(0..<4, id: \.self) {
-                    num in Text("\(entry.closestDate[num].date, formatter: Self.dateFormatter)")
+                ForEach(0..<4, id: \.self) { num in
+                    if let date = entry.secondClosestDate.indices.contains(num) ? entry.secondClosestDate[num].date : nil {
+                        Text(date, formatter: Self.dateFormatter)
+                    }
                 }
             }
             .font(.system(size: 16))
