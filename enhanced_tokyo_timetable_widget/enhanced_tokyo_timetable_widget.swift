@@ -52,7 +52,10 @@ struct Provider: TimelineProvider {
         [TimePoint(hour: 15, min: 37, dest: "六本木一丁目"), TimePoint(hour: 15, min: 41, dest: "永田町"), TimePoint(hour: 15, min: 47, dest: "飯田橋"), TimePoint(hour: 15, min: 52, dest: "東大前")],
         [TimePoint(hour: 16, min: 19, dest: "六本木一丁目"), TimePoint(hour: 16, min: 23, dest: "永田町"), TimePoint(hour: 16, min: 29, dest: "飯田橋"), TimePoint(hour: 16, min: 34, dest: "東大前")],
         [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
-        [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
+        [TimePoint(hour: 20, min: 27, dest: "六本木一丁目"), TimePoint(hour: 20, min: 31, dest: "永田町"), TimePoint(hour: 20, min: 37, dest: "飯田橋"), TimePoint(hour: 20, min: 43, dest: "東大前")],
+        [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")],
+        [TimePoint(hour: 22, min: 00, dest: "六本木一丁目"), TimePoint(hour: 22, min: 04, dest: "永田町"), TimePoint(hour: 22, min: 10, dest: "飯田橋"), TimePoint(hour: 22, min: 16, dest: "東大前")],
+        [TimePoint(hour: 22, min: 41, dest: "六本木一丁目"), TimePoint(hour: 22, min: 45, dest: "永田町"), TimePoint(hour: 22, min: 51, dest: "飯田橋"), TimePoint(hour: 22, min: 56, dest: "東大前")]
     ]
 
     // define function getNextSchedule
@@ -65,7 +68,7 @@ struct Provider: TimelineProvider {
         var first: [TimePoint] = []
         var second: [TimePoint] = []
         for (index, schedule) in weekdaySchedule.enumerated() {
-            if schedule[0].date > now {
+            if schedule[schedule.count - 1].date > now {
                 first = weekdaySchedule[index]
                 second = weekdaySchedule[index + 1]
                 break
