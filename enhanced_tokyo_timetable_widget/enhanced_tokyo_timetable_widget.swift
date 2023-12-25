@@ -62,10 +62,10 @@ struct Provider: TimelineProvider {
     static func getNextSchedule(now: Date) -> ([TimePoint], [TimePoint]) {
         var first: [TimePoint] = []
         var second: [TimePoint] = []
-        for schedule in weekdaySchedule {
+        for (index, schedule) in weekdaySchedule.enumerated() {
             if schedule[0].date > now {
-                first = schedule
-                second = schedule
+                first = weekdaySchedule[index]
+                second = weekdaySchedule[index + 1]
                 break
             }
         }
