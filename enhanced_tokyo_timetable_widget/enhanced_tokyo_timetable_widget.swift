@@ -48,6 +48,8 @@ struct Provider: TimelineProvider {
     }
     
     static var weekdaySchedule: [[TimePoint]] = [
+        [TimePoint(hour: 15, min: 13, dest: "六本木一丁目"), TimePoint(hour: 15, min: 17, dest: "永田町"), TimePoint(hour: 15, min: 23, dest: "飯田橋"), TimePoint(hour: 15, min: 28, dest: "東大前")],
+        [TimePoint(hour: 15, min: 37, dest: "六本木一丁目"), TimePoint(hour: 15, min: 41, dest: "永田町"), TimePoint(hour: 15, min: 47, dest: "飯田橋"), TimePoint(hour: 15, min: 52, dest: "東大前")],
         [TimePoint(hour: 16, min: 19, dest: "六本木一丁目"), TimePoint(hour: 16, min: 23, dest: "永田町"), TimePoint(hour: 16, min: 29, dest: "飯田橋"), TimePoint(hour: 16, min: 34, dest: "東大前")],
         [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
         [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
