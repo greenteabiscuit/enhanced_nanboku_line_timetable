@@ -113,32 +113,37 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             // Texts next to the circles
             VStack(alignment: .leading, spacing: 41) {
                 ForEach(0..<4, id: \.self) {
-                    num in Text(String(entry.closestDate[num].dest))
+                    num in Text(String(entry.closestDate.isEmpty ? "" : entry.closestDate[num].dest))
                 }
             }
             .font(.system(size: 16))
             
             // Number columns
             VStack(alignment: .leading, spacing: 41) {
-                Text("19:41")
-                Text("19:45")
-                Text("19:52")
-                Text("19:57")
+                ForEach(0..<4, id: \.self) {
+                    num in Text("\(entry.closestDate[num].date, formatter: Self.dateFormatter)")
+                }
             }
             .font(.system(size: 16))
         
             
             VStack(alignment: .leading, spacing: 41) {
-                Text("21:00")
-                Text("21:04")
-                Text("21:11")
-                Text("21:16")
+                ForEach(0..<4, id: \.self) {
+                    num in Text("\(entry.closestDate[num].date, formatter: Self.dateFormatter)")
+                }
             }
             .font(.system(size: 16))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
     }
+    
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "en_US_POSIX")
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
 }
 
 struct enhanced_tokyo_timetable_widget: Widget {
