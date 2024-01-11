@@ -8,57 +8,95 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: AppIntentTimelineProvider {
-    // Define the class with two Int fields: hour and min
-    class TimePoint {
-        var hour: Int
-        var min: Int
-        var date: Date
-        var dest: String
+// Define the class with two Int fields: hour and min
+class TimePoint {
+    var hour: Int
+    var min: Int
+    var date: Date
+    var dest: String
+    
+    init(hour: Int, min: Int, dest: String) {
+        let today = Calendar.current.startOfDay(for: Date())
+        self.hour = hour
+        self.min = min
+        self.date = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: today)!
+        self.dest = dest
+    }
+}
+
+struct Provider: TimelineProvider {
+    func placeholder(in context: Context) -> Entry {
+        .placeholder
+    }
+    
+    func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
+        completion(.placeholder)
+    }
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        let currentDate = Date()
+        let seconds = Calendar.current.component(.second, from: currentDate)
+        let startDate = Calendar.current.date(byAdding: .second, value: -seconds, to: currentDate)!
         
-        init(hour: Int, min: Int, dest: String) {
-            let today = Calendar.current.startOfDay(for: Date())
-            self.hour = hour
-            self.min = min
-            self.date = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: today)!
-            self.dest = dest
+        let entries = (0 ..< 60).map {
+            let date = Calendar.current.date(byAdding: .second, value: $0 * 60 - 1, to: startDate)!
+            let otherDate = Calendar.current.date(byAdding: .second, value: $0 * 60, to: startDate)!
+            let (first, second) = Provider.getNextSchedule(now: otherDate)
+            return Entry(date: date, closestDate: first, secondClosestDate: second)
         }
+        completion(.init(entries: entries, policy: .atEnd))
     }
     
     static var weekdaySchedule: [[TimePoint]] = [
+        [TimePoint(hour: 15, min: 13, dest: "六本木一丁目"), TimePoint(hour: 15, min: 17, dest: "永田町"), TimePoint(hour: 15, min: 23, dest: "飯田橋"), TimePoint(hour: 15, min: 28, dest: "東大前")],
+        [TimePoint(hour: 15, min: 25, dest: "六本木一丁目"), TimePoint(hour: 15, min: 29, dest: "永田町"), TimePoint(hour: 15, min: 35, dest: "飯田橋"), TimePoint(hour: 15, min: 41, dest: "東大前")],
+        [TimePoint(hour: 15, min: 37, dest: "六本木一丁目"), TimePoint(hour: 15, min: 41, dest: "永田町"), TimePoint(hour: 15, min: 47, dest: "飯田橋"), TimePoint(hour: 15, min: 52, dest: "東大前")],
+        [TimePoint(hour: 15, min: 49, dest: "六本木一丁目"), TimePoint(hour: 15, min: 53, dest: "永田町"), TimePoint(hour: 15, min: 59, dest: "飯田橋"), TimePoint(hour: 16, min: 04, dest: "東大前")],
+        [TimePoint(hour: 16, min: 01, dest: "六本木一丁目"), TimePoint(hour: 16, min: 05, dest: "永田町"), TimePoint(hour: 16, min: 11, dest: "飯田橋"), TimePoint(hour: 16, min: 16, dest: "東大前")],
+        [TimePoint(hour: 16, min: 19, dest: "六本木一丁目"), TimePoint(hour: 16, min: 23, dest: "永田町"), TimePoint(hour: 16, min: 29, dest: "飯田橋"), TimePoint(hour: 16, min: 34, dest: "東大前")],
         [TimePoint(hour: 19, min: 41, dest: "六本木一丁目"), TimePoint(hour: 19, min: 45, dest: "永田町"), TimePoint(hour: 19, min: 52, dest: "飯田橋"), TimePoint(hour: 19, min: 57, dest: "東大前")],
-        [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")]
+        [TimePoint(hour: 20, min: 27, dest: "六本木一丁目"), TimePoint(hour: 20, min: 31, dest: "永田町"), TimePoint(hour: 20, min: 37, dest: "飯田橋"), TimePoint(hour: 20, min: 43, dest: "東大前")],
+        [TimePoint(hour: 21, min: 0, dest: "六本木一丁目"), TimePoint(hour: 21, min: 4, dest: "永田町"), TimePoint(hour: 21, min: 11, dest: "飯田橋"), TimePoint(hour: 21, min: 16, dest: "東大前")],
+        [TimePoint(hour: 22, min: 00, dest: "六本木一丁目"), TimePoint(hour: 22, min: 04, dest: "永田町"), TimePoint(hour: 22, min: 10, dest: "飯田橋"), TimePoint(hour: 22, min: 16, dest: "東大前")],
+        [TimePoint(hour: 22, min: 41, dest: "六本木一丁目"), TimePoint(hour: 22, min: 45, dest: "永田町"), TimePoint(hour: 22, min: 51, dest: "飯田橋"), TimePoint(hour: 22, min: 56, dest: "東大前")],
+        [TimePoint(hour: 23, min: 19, dest: "六本木一丁目"), TimePoint(hour: 23, min: 23, dest: "永田町"), TimePoint(hour: 23, min: 29, dest: "飯田橋"), TimePoint(hour: 23, min: 35, dest: "東大前")]
     ]
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
-    }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
-    }
-    
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+    // define function getNextSchedule
+    // input: now: Date
+    // output: (first: [TimePoint], second: [TimePoint])
+    // iterate through all the first element in the weekdaySchedule, and find the first one that is later than now
+    // if the first one is later than now, return the first one and the second one
+    // if the first one is earlier than now, return the first one and the first one in the next schedule
+    static func getNextSchedule(now: Date) -> ([TimePoint], [TimePoint]) {
+        var first: [TimePoint] = []
+        var second: [TimePoint] = []
+        for (index, schedule) in weekdaySchedule.enumerated() {
+            if schedule[schedule.count - 1].date > now {
+                first = weekdaySchedule[index]
+                second = weekdaySchedule[index + 1]
+                break
+            }
         }
+        if first.isEmpty {
+            first = weekdaySchedule[0]
+            second = weekdaySchedule[1]
+        }
+        return (first, second)
+    } 
+}
 
-        return Timeline(entries: entries, policy: .atEnd)
+struct Entry: TimelineEntry {
+    var date: Date = .now
+    var closestDate: [TimePoint] = []
+    var secondClosestDate: [TimePoint] = []
+
+    static var placeholder: Self {
+        .init()
     }
 }
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationAppIntent
-}
-
 struct enhanced_tokyo_timetable_widgetEntryView : View {
-    var entry: Provider.Entry
+    var entry: Entry
 
     var body: some View {
         HStack(alignment: .center, spacing: 20) {
@@ -84,42 +122,50 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
 
             // Texts next to the circles
             VStack(alignment: .leading, spacing: 41) {
-                Text("六本木一丁目")
-                Text("永田町")
-                Text("飯田橋")
-                Text("東大前")
+                ForEach(0..<4, id: \.self) {
+                    num in Text(String(entry.closestDate.isEmpty ? "" : entry.closestDate[num].dest))
+                }
             }
             .font(.system(size: 16))
             
             // Number columns
             VStack(alignment: .leading, spacing: 41) {
-                Text("19:41")
-                Text("19:45")
-                Text("19:52")
-                Text("19:57")
+                ForEach(0..<4, id: \.self) { num in
+                    if let date = entry.closestDate.indices.contains(num) ? entry.closestDate[num].date : nil {
+                        Text(date, formatter: Self.dateFormatter)
+                    }
+                }
             }
             .font(.system(size: 16))
         
             
             VStack(alignment: .leading, spacing: 41) {
-                Text("21:00")
-                Text("21:04")
-                Text("21:11")
-                Text("21:16")
+                ForEach(0..<4, id: \.self) { num in
+                    if let date = entry.secondClosestDate.indices.contains(num) ? entry.secondClosestDate[num].date : nil {
+                        Text(date, formatter: Self.dateFormatter)
+                    }
+                }
             }
             .font(.system(size: 16))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
     }
+    
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = .init(identifier: "en_US_POSIX")
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
 }
 
 struct enhanced_tokyo_timetable_widget: Widget {
     let kind: String = "enhanced_tokyo_timetable_widget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            enhanced_tokyo_timetable_widgetEntryView(entry: entry)
+        StaticConfiguration(kind: kind, provider: Provider()) {
+            enhanced_tokyo_timetable_widgetEntryView(entry: $0)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
     }
@@ -142,6 +188,5 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemLarge) {
     enhanced_tokyo_timetable_widget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    Entry.placeholder
 }
