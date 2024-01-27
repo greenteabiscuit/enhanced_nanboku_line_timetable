@@ -72,8 +72,18 @@ struct Provider: TimelineProvider {
     ]
 
     static var weekendSchedule: [[TimePoint]] = [
+        [TimePoint(hour: 17, min: 01, dest: "六本木一丁目"), TimePoint(hour: 17, min: 05, dest: "永田町"), TimePoint(hour: 17, min: 11, dest: "飯田橋"), TimePoint(hour: 17, min: 16, dest: "東大前")],
+        [TimePoint(hour: 17, min: 13, dest: "六本木一丁目"), TimePoint(hour: 17, min: 17, dest: "永田町"), TimePoint(hour: 17, min: 23, dest: "飯田橋"), TimePoint(hour: 17, min: 28, dest: "東大前")],
+        [TimePoint(hour: 17, min: 25, dest: "六本木一丁目"), TimePoint(hour: 17, min: 29, dest: "永田町"), TimePoint(hour: 17, min: 35, dest: "飯田橋"), TimePoint(hour: 17, min: 40, dest: "東大前")],
+        [TimePoint(hour: 17, min: 37, dest: "六本木一丁目"), TimePoint(hour: 17, min: 41, dest: "永田町"), TimePoint(hour: 17, min: 47, dest: "飯田橋"), TimePoint(hour: 17, min: 52, dest: "東大前")],
+        [TimePoint(hour: 17, min: 49, dest: "六本木一丁目"), TimePoint(hour: 17, min: 53, dest: "永田町"), TimePoint(hour: 17, min: 59, dest: "飯田橋"), TimePoint(hour: 18, min: 04, dest: "東大前")],
+        [TimePoint(hour: 18, min: 01, dest: "六本木一丁目"), TimePoint(hour: 18, min: 05, dest: "永田町"), TimePoint(hour: 18, min: 11, dest: "飯田橋"), TimePoint(hour: 18, min: 16, dest: "東大前")],
+        [TimePoint(hour: 18, min: 13, dest: "六本木一丁目"), TimePoint(hour: 18, min: 17, dest: "永田町"), TimePoint(hour: 18, min: 23, dest: "飯田橋"), TimePoint(hour: 18, min: 28, dest: "東大前")],
+        [TimePoint(hour: 18, min: 25, dest: "六本木一丁目"), TimePoint(hour: 18, min: 29, dest: "永田町"), TimePoint(hour: 18, min: 35, dest: "飯田橋"), TimePoint(hour: 18, min: 40, dest: "東大前")],
+        [TimePoint(hour: 18, min: 49, dest: "六本木一丁目"), TimePoint(hour: 18, min: 53, dest: "永田町"), TimePoint(hour: 18, min: 59, dest: "飯田橋"), TimePoint(hour: 19, min: 04, dest: "東大前")],
         [TimePoint(hour: 19, min: 07, dest: "六本木一丁目"), TimePoint(hour: 19, min: 11, dest: "永田町"), TimePoint(hour: 19, min: 17, dest: "飯田橋"), TimePoint(hour: 19, min: 22, dest: "東大前")],
         [TimePoint(hour: 19, min: 27, dest: "六本木一丁目"), TimePoint(hour: 19, min: 30, dest: "永田町"), TimePoint(hour: 19, min: 37, dest: "飯田橋"), TimePoint(hour: 19, min: 42, dest: "東大前")],
+        [TimePoint(hour: 19, min: 52, dest: "六本木一丁目"), TimePoint(hour: 19, min: 56, dest: "永田町"), TimePoint(hour: 20, min: 03, dest: "飯田橋"), TimePoint(hour: 20, min: 08, dest: "東大前")],
         ]
     
     // define function getNextSchedule
