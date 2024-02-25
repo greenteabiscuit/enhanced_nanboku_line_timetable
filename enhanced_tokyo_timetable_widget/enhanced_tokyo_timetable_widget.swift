@@ -41,6 +41,15 @@ struct Provider: TimelineProvider {
         let entries = (0 ..< 60).map {
             let date = Calendar.current.date(byAdding: .second, value: $0 * 60 - 1, to: startDate)!
             let otherDate = Calendar.current.date(byAdding: .second, value: $0 * 60, to: startDate)!
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.weekday], from: otherDate)
+            
+            let weekday = components.weekday
+            if weekday == 1 || weekday == 7 {
+                let (first, second) = Provider.getNextWeekendSchedule(now: otherDate)
+                return Entry(date: date, closestDate: first, secondClosestDate: second)
+            }
+            // weekday
             let (first, second) = Provider.getNextSchedule(now: otherDate)
             return Entry(date: date, closestDate: first, secondClosestDate: second)
         }
@@ -62,6 +71,21 @@ struct Provider: TimelineProvider {
         [TimePoint(hour: 23, min: 19, dest: "六本木一丁目"), TimePoint(hour: 23, min: 23, dest: "永田町"), TimePoint(hour: 23, min: 29, dest: "飯田橋"), TimePoint(hour: 23, min: 35, dest: "東大前")]
     ]
 
+    static var weekendSchedule: [[TimePoint]] = [
+        [TimePoint(hour: 17, min: 01, dest: "六本木一丁目"), TimePoint(hour: 17, min: 05, dest: "永田町"), TimePoint(hour: 17, min: 11, dest: "飯田橋"), TimePoint(hour: 17, min: 16, dest: "東大前")],
+        [TimePoint(hour: 17, min: 13, dest: "六本木一丁目"), TimePoint(hour: 17, min: 17, dest: "永田町"), TimePoint(hour: 17, min: 23, dest: "飯田橋"), TimePoint(hour: 17, min: 28, dest: "東大前")],
+        [TimePoint(hour: 17, min: 25, dest: "六本木一丁目"), TimePoint(hour: 17, min: 29, dest: "永田町"), TimePoint(hour: 17, min: 35, dest: "飯田橋"), TimePoint(hour: 17, min: 40, dest: "東大前")],
+        [TimePoint(hour: 17, min: 37, dest: "六本木一丁目"), TimePoint(hour: 17, min: 41, dest: "永田町"), TimePoint(hour: 17, min: 47, dest: "飯田橋"), TimePoint(hour: 17, min: 52, dest: "東大前")],
+        [TimePoint(hour: 17, min: 49, dest: "六本木一丁目"), TimePoint(hour: 17, min: 53, dest: "永田町"), TimePoint(hour: 17, min: 59, dest: "飯田橋"), TimePoint(hour: 18, min: 04, dest: "東大前")],
+        [TimePoint(hour: 18, min: 01, dest: "六本木一丁目"), TimePoint(hour: 18, min: 05, dest: "永田町"), TimePoint(hour: 18, min: 11, dest: "飯田橋"), TimePoint(hour: 18, min: 16, dest: "東大前")],
+        [TimePoint(hour: 18, min: 13, dest: "六本木一丁目"), TimePoint(hour: 18, min: 17, dest: "永田町"), TimePoint(hour: 18, min: 23, dest: "飯田橋"), TimePoint(hour: 18, min: 28, dest: "東大前")],
+        [TimePoint(hour: 18, min: 25, dest: "六本木一丁目"), TimePoint(hour: 18, min: 29, dest: "永田町"), TimePoint(hour: 18, min: 35, dest: "飯田橋"), TimePoint(hour: 18, min: 40, dest: "東大前")],
+        [TimePoint(hour: 18, min: 49, dest: "六本木一丁目"), TimePoint(hour: 18, min: 53, dest: "永田町"), TimePoint(hour: 18, min: 59, dest: "飯田橋"), TimePoint(hour: 19, min: 04, dest: "東大前")],
+        [TimePoint(hour: 19, min: 07, dest: "六本木一丁目"), TimePoint(hour: 19, min: 11, dest: "永田町"), TimePoint(hour: 19, min: 17, dest: "飯田橋"), TimePoint(hour: 19, min: 22, dest: "東大前")],
+        [TimePoint(hour: 19, min: 27, dest: "六本木一丁目"), TimePoint(hour: 19, min: 30, dest: "永田町"), TimePoint(hour: 19, min: 37, dest: "飯田橋"), TimePoint(hour: 19, min: 42, dest: "東大前")],
+        [TimePoint(hour: 19, min: 52, dest: "六本木一丁目"), TimePoint(hour: 19, min: 56, dest: "永田町"), TimePoint(hour: 20, min: 03, dest: "飯田橋"), TimePoint(hour: 20, min: 08, dest: "東大前")],
+        ]
+    
     // define function getNextSchedule
     // input: now: Date
     // output: (first: [TimePoint], second: [TimePoint])
@@ -84,6 +108,23 @@ struct Provider: TimelineProvider {
         }
         return (first, second)
     } 
+    
+    static func getNextWeekendSchedule(now: Date) -> ([TimePoint], [TimePoint]) {
+        var first: [TimePoint] = []
+        var second: [TimePoint] = []
+        for (index, schedule) in weekendSchedule.enumerated() {
+            if schedule[schedule.count - 1].date > now {
+                first = weekendSchedule[index]
+                second = weekendSchedule[index + 1]
+                break
+            }
+        }
+        if first.isEmpty {
+            first = weekendSchedule[0]
+            second = weekendSchedule[1]
+        }
+        return (first, second)
+    }
 }
 
 struct Entry: TimelineEntry {
