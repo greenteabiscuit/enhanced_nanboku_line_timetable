@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591201BE2B739C1100933A46 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591201BD2B739C1100933A46 /* SwiftUIView.swift */; };
 		59F6311B2B29F488009088E4 /* enhanced_tokyo_timetableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F6311A2B29F488009088E4 /* enhanced_tokyo_timetableApp.swift */; };
 		59F6311D2B29F488009088E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F6311C2B29F488009088E4 /* ContentView.swift */; };
 		59F6311F2B29F48C009088E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59F6311E2B29F48C009088E4 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		591201BD2B739C1100933A46 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		59F631172B29F488009088E4 /* enhanced_tokyo_timetable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = enhanced_tokyo_timetable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59F6311A2B29F488009088E4 /* enhanced_tokyo_timetableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enhanced_tokyo_timetableApp.swift; sourceTree = "<group>"; };
 		59F6311C2B29F488009088E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				59F631552B29F500009088E4 /* AppIntent.swift */,
 				59F631572B29F502009088E4 /* Assets.xcassets */,
 				59F631592B29F502009088E4 /* Info.plist */,
+				591201BD2B739C1100933A46 /* SwiftUIView.swift */,
 			);
 			path = enhanced_tokyo_timetable_widget;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				59F631562B29F500009088E4 /* AppIntent.swift in Sources */,
 				59F631542B29F500009088E4 /* enhanced_tokyo_timetable_widget.swift in Sources */,
 				59F631522B29F500009088E4 /* enhanced_tokyo_timetable_widgetLiveActivity.swift in Sources */,
+				591201BE2B739C1100933A46 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
