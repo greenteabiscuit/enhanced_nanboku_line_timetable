@@ -10,7 +10,25 @@ import SwiftUI
 struct enhanced_tokyo_timetable_widgetEntryView : View {
     var entry: Entry
 
+    func getDayMessage() -> String {
+        let today = Date()
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: today)
+        
+        // Weekday is 1 for Sunday, 7 for Saturday
+        if weekday == 1 || weekday == 7 {
+            return "休日"
+        } else {
+            return "平日"
+        }
+    }
+    
     var body: some View {
+        HStack(alignment: .center, content: {
+            Text(getDayMessage())
+        })
+        .padding(.top, 20)
+        .font(.system(size: 16))
         HStack(alignment: .center, spacing: 20) {
             // Line and circles
             ZStack {
@@ -61,7 +79,6 @@ struct enhanced_tokyo_timetable_widgetEntryView : View {
             .font(.system(size: 16))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .padding()
     }
     
     private static let dateFormatter: DateFormatter = {
